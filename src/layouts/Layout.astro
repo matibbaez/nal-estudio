@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Estudio Mitre Abogados - Excelencia Legal" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+        
+		<script>
+            // IMPORTAMOS LENIS DIRECTAMENTE AQUÍ (Versión ESM)
+            // Esto asegura que la librería exista antes de usarla
+			import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/+esm';
+
+			const lenis = new Lenis({
+				duration: 1.2,
+				easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+				infinite: false,
+				smoothWheel: true,
+			});
+
+			function raf(time: number) {
+				lenis.raf(time);
+				requestAnimationFrame(raf);
+			}
+
+			requestAnimationFrame(raf);
+
+			// Manejo de enlaces internos (Anchors)
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', (e) => {
+					e.preventDefault();
+					const target = e.currentTarget as HTMLAnchorElement;
+					const href = target.getAttribute('href');
+
+					if (href) {
+						lenis.scrollTo(href);
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
+
+<style is:global>
+    /* CSS NECESARIO PARA LENIS */
+	html.lenis, html.lenis body {
+		height: auto;
+	}
+
+	.lenis.lenis-smooth {
+		scroll-behavior: auto !important;
+	}
+
+	.lenis.lenis-smooth [data-lenis-prevent] {
+		overscroll-behavior: contain;
+	}
+
+	.lenis.lenis-stopped {
+		overflow: hidden;
+	}
+
+	.lenis.lenis-scrolling iframe {
+		pointer-events: none;
+	}
+</style>

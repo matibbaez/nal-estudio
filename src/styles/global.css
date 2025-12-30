@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&family=Allura&display=swap');
+
+:root {
+  /* Paleta NAL Boutique */
+  --color-bg: #2a324b; /* El azul de su imagen (aprox) */
+  --color-bg-light: #353e5a;
+  --color-accent: #e0c3e8; /* El rosa/lila de las letras */
+  --color-accent-hover: #f3dff7;
+  --color-text-white: #ffffff;
+  --color-text-muted: #b8c0d6;
+
+  /* Tipografía */
+  --font-logo: 'Allura', cursive; /* Para el logo NAL */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+
+  /* Layout */
+  --container-width: 1024px; 
+  --nav-height: 90px;
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-text-white);
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  /* Degradado suave y femenino/profesional */
+  background: radial-gradient(circle at top right, #3d4666 0%, var(--color-bg) 60%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  margin: 0;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.text-accent {
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Botones estilo Boutique */
+.btn-primary {
+  display: inline-block;
+  background: rgba(224, 195, 232, 0.1);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 0.8rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  border-radius: 50px; /* Bordes redondos = más amigable/femenino */
+}
+
+.btn-primary:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  box-shadow: 0 0 25px rgba(224, 195, 232, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-text {
+  color: #fff; text-decoration: none; font-size: 0.9rem;
+  letter-spacing: 1px; display: flex; align-items: center; gap: 0.5rem;
+  opacity: 0.8; transition: opacity 0.3s;
+}
+.btn-text:hover { opacity: 1; color: var(--color-accent); }
+
+/* Ajustes Mobile */
+@media (max-width: 768px) {
+  .btn-primary { width: 100%; box-sizing: border-box; }
+}
